@@ -19,8 +19,24 @@ const RegisterLogic = () => {
             const { data: { user }, error } = await supabase.auth.signUp({
                 email: data.email,
                 password: data.password,
+                options: {
+                    data: {
+                        shop_name: data.name,
+                    },
+                },
             })
             if (user) {
+
+                const shopData = {
+                    user_id: user.id,
+                    nama: data.name,
+                    email: data.email,
+                };
+
+                const { data, shopError } = await supabase.from("shop").upsert([shopData])
+
+                if (shopError) setError(shopError)
+
                 router.push("login")
             }
             if (error) setError(error)
