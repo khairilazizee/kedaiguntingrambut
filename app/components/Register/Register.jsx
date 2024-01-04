@@ -57,7 +57,7 @@ const RegisterLogic = () => {
                     <div className="py-2 px-3 bg-red-600 text-white text-center uppercase font-medium">{apiError.message}</div>
                 </>)}
                 <div>REGISTER YOUR ACCOUNT</div>
-                <form className="bg-black" onSubmit={handleSubmit(onSubmit)}>
+                <form className="" onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col mb-5">
                         <input type="text" placeholder="Name" className="text-black py-2 px-4 rounded-md" {...register("name", { required: true })} />
                     </div>

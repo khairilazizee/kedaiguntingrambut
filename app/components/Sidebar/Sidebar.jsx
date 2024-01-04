@@ -31,8 +31,8 @@ const menuItems = [
         title: "Users",
         lists: [
             {
-                title: "Settings",
-                path: "/dashboard/users/settings",
+                title: "Profiles",
+                path: "/dashboard/user/profile",
                 icon: <MdAlternateEmail />
             },
             {
@@ -45,21 +45,6 @@ const menuItems = [
 ]
 
 const Sidebar = () => {
-
-    const router = useRouter();
-
-    const supabase = createClientComponentClient();
-
-    async function logout() {
-
-        const { error } = await supabase.auth.signOut()
-
-        if (error) {
-            console.log(error)
-        }
-
-        router.push("/login")
-    }
 
     return (
         <div className="sticky top-10 h-screen">
@@ -82,10 +67,12 @@ const Sidebar = () => {
                     </li>
                 ))}
             </ul>
-            <button className="p-2.5 m-5 flex items-center gap-2.5 rounded-xl hover:bg-[#2e374a] w-full" onClick={logout}>
-                <MdLogout />
-                Logout
-            </button>
+            <form action="/auth/signout" method="post">
+                <button className="p-2.5 m-5 flex items-center gap-2.5 rounded-xl hover:bg-[#2e374a] w-full" type="submit">
+                    <MdLogout />
+                    Logout
+                </button>
+            </form>
         </div>
     )
 }

@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
-import { NextSeo } from 'next-seo'
 
 const LoginController = () => {
     const { register, handleSubmit } = useForm();
@@ -19,6 +18,7 @@ const LoginController = () => {
                 email: data.email,
                 password: data.password
             })
+            // console.log(user)
             if (user) router.push("dashboard")
             if (error) setError(error);
         } catch (error) {
@@ -34,7 +34,7 @@ const LoginController = () => {
                     <div className="py-2 px-3 bg-red-600 text-white text-center uppercase font-medium">{error.message}</div>
                 </>)}
                 <div>LOG IN YOUR ACCOUNT</div>
-                <form className="bg-black" onSubmit={handleSubmit(onSubmit)}>
+                <form className="" onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col mb-5">
                         <input type="email" placeholder="Email" className="text-black py-2 px-4 rounded-md" {...register("email", { required: true })} />
                     </div>
